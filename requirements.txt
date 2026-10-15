@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+# 核心依赖（跑服务必需）
+# ─────────────────────────────────────────────────────────────
+# ★ 显卡是 Blackwell（sm_120，如 RTX 50 系）时必须用 cu128 及以上的轮子：
+#     pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+#   用 cu121 及更早的轮子会在 sm_120 上直接报 "no kernel image is available"。
+torch>=2.0
+torchvision>=0.15
+
+numpy>=1.24
+opencv-python>=4.8
+Pillow>=10.0
+imageio-ffmpeg>=0.4.9      # 自带 ffmpeg 二进制，不依赖系统 ffmpeg
+
+# ─────────────────────────────────────────────────────────────
+# Web 服务
+# ─────────────────────────────────────────────────────────────
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9    # FastAPI 接收 multipart 文件上传必需
+pydantic>=2.0
+jinja2>=3.1                # FastAPI 的 HTML 模板依赖
+
+# ─────────────────────────────────────────────────────────────
+# TensorRT 加速（可选，但推荐 —— 见 README 的实测数据）
+# ─────────────────────────────────────────────────────────────
+# 装了它才能用 sr_backend="vsr-trt" / rife_backend="trt"；
+# 没装会自动退回纯 PyTorch 路径，不影响功能。
+# tensorrt>=10.0
+# pycuda>=2022.1
+# onnx>=1.15
+# onnxruntime-gpu>=1.17     # 用来校验导出的 ONNX 是否忠实（tools/diag 会用到）
+
+# ─────────────────────────────────────────────────────────────
+# 诊断脚本额外需要
+# ─────────────────────────────────────────────────────────────
+# scipy>=1.10               # tools/diag/diag_error_map.py 的连通域分析

@@ -1,0 +1,58 @@
+# ── 运行产物 ──────────────────────────────────────────────
+# ★ 这些必须用「根锚定」（前导 /），否则会误伤同名子目录：
+#   例如 `build/` 会把 tools/build/ 一起排除掉。
+/work/
+/data/
+/out/
+/out_*/
+/_test/
+*.log
+
+# ── 模型权重（体积大，走 GitHub Release 下载，见 engines/README.md）──
+/weights/
+*.pth
+*.pkl
+*.pt
+
+# ── TensorRT 引擎与构建中间物（体积大，走 Release）──────────
+*.trt
+*.engine
+*.onnx
+*.weight
+/trt_cache/
+/trt2/
+/trt3/
+/trt4/
+/trt5/
+/cache/
+
+# ── 测试素材 ──────────────────────────────────────────────
+*.mp4
+*.mov
+*.mkv
+
+# ── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+# ★ 同样根锚定，别误伤 tools/build/
+/build/
+/dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ── 编辑器 / 系统 ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
